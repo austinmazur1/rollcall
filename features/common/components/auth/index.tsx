@@ -31,25 +31,27 @@ export const AuthCard = () => {
           <CardTitle className="text-center">
             {isLogin ? "Login" : "Sign Up"}
           </CardTitle>
-          <CardDescription className="text-center">
+          <CardDescription className="text-center w-[300px]">
             {isLogin
               ? "Enter your credentials to access your account"
               : "Create a new account to get started"}
           </CardDescription>
         </CardHeader>
         <CardContent className="px-6 py-4">
-          <Tabs defaultValue="login" className="w-full">
+          <Tabs
+            defaultValue="login"
+            onValueChange={(value) => setIsLogin(value === "login")}
+            className="w-full"
+          >
             <TabsList className="flex justify-between mb-4 space-x-2">
               <TabsTrigger
                 value="login"
-                onClick={() => setIsLogin(true)}
                 className="w-full text-center"
               >
                 Login
               </TabsTrigger>
               <TabsTrigger
                 value="signup"
-                onClick={() => setIsLogin(false)}
                 className="w-full text-center"
               >
                 Sign Up
@@ -77,6 +79,7 @@ export const AuthCard = () => {
                 </div>
               </form>
             </TabsContent>
+
             <TabsContent value="signup">
               <form onSubmit={handleSubmit}>
                 <div className="space-y-6">
@@ -103,15 +106,17 @@ export const AuthCard = () => {
                 </div>
               </form>
             </TabsContent>
+
           </Tabs>
         </CardContent>
+
         <CardFooter className="flex justify-center px-4 py-4">
           <p className="text-sm text-gray-600">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <Button
               variant="link"
               className="p-0"
-              onClick={() => setIsLogin(!isLogin)}
+              // onClick={() => setIsLogin(!isLogin)} //TODO trigger change the tabs when we click
             >
               {isLogin ? "Sign Up" : "Login"}
             </Button>
